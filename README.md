@@ -23,6 +23,6 @@ This plugin is intended to allow triggering `mvn deploy:deploy` independently of
 Usage
 -----
 A typical use case could look like this
-* Call `mvn verify bayern.meyer.maven.plugins:deferring-maven-plugin:0.0.1-SNAPSHOT:save-artifacts` to serialize the information about which artifacts where packaged into a file deferring-maven-plugin.json
+* Call `mvn verify bayern.meyer.maven.plugins:deferring-maven-plugin:0.0.1:save-artifacts` to serialize the information about which artifacts where packaged into a file deferring-maven-plugin.json
 * Do something in between
-* Call `mvn bayern.meyer.maven.plugins:deferring-maven-plugin:0.0.1-SNAPSHOT:load-artifacts install:install deploy:deploy` to read the stored information and use it to install and deploy the generated artifacts
+* Call `mvn bayern.meyer.maven.plugins:deferring-maven-plugin:0.0.1:load-artifacts install:install deploy:deploy` to read the stored information and use it to install and deploy the generated artifacts
