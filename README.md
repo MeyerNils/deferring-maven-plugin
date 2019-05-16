@@ -15,6 +15,8 @@ In a multi-module-scenario each module is processed and deployed one after the o
 
 Another use case where deployment is decoupled from build and test is described by the [unleash-maven-plugin](https://github.com/shillner/unleash-maven-plugin/) covering the release process: to ensure that artifacts are only deployed if all steps within the release (changing versions, committing, builing, testing, tagging) were carried out successfully deployment is not handled within the maven call taking care about the packaging. Instead it's triggered at a later point in time. 
 
+While this issues could be overcome to configure which artifacts should be deployed when and where e.g. within build jobs on a CI server is might still be desireable to keep this information with the project in the pom.xml. 
+
 This plugin is intended to allow triggering `mvn deploy:deploy` independently of the Maven call triggering the packaging by providing two goals to write the context information about the artifacts to deploy out into the build directory after packaging and reading this context information from there again before deployment. 
 
 Usage
