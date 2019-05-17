@@ -4,7 +4,7 @@
 
 	<groupId>bayern.meyer.maven.plugins</groupId>
 	<artifactId>deferring-maven-plugin</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<packaging>maven-plugin</packaging>
 
 	<name>deferring-maven-plugin Maven Plugin</name>
@@ -33,7 +33,7 @@
 		<url>https://github.com/MeyerNils/deferring-maven-plugin</url>
 		<connection>scm:git:https://github.com/MeyerNils/deferring-maven-plugin</connection>
 		<developerConnection>scm:git:ssh://git@github.com/MeyerNils/deferring-maven-plugin</developerConnection>
-		<tag>0.0.2</tag>
+		<tag>HEAD</tag>
 	</scm>
 	<issueManagement>
 		<system>GitHub</system>
