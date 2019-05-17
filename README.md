@@ -26,3 +26,11 @@ A typical use case could look like this
 * Call `mvn verify bayern.meyer.maven.plugins:deferring-maven-plugin:0.0.1:save-artifacts` to serialize the information about which artifacts where packaged into a file deferring-maven-plugin.json
 * Do something in between
 * Call `mvn bayern.meyer.maven.plugins:deferring-maven-plugin:0.0.1:load-artifacts install:install deploy:deploy` to read the stored information and use it to install and deploy the generated artifacts
+
+Goals
+-----
+* __save-artifacts__: Serialize the information about the artifact version of the current run and which artifacts where packaged into a file deferring-maven-plugin.json
+* __load-artifacts__: Read the stored information from the file deferring-maven-plugin.json and add it to the [MavenProject](https://github.com/apache/maven/blob/master/maven-core/src/main/java/org/apache/maven/project/MavenProject.java) of the current execution to make it available for the installation and deployment of the generated artifacts
+* __load-version__: Read the stored information from the file deferring-maven-plugin.json and adjust artifact.version an artifact.versionRange of the current [MavenProject](https://github.com/apache/maven/blob/master/maven-core/src/main/java/org/apache/maven/project/MavenProject.java) to make it available for the installation and deployment of the generated artifacts. 
+
+*Caution: Using the load-version goal may lead to situation where maven plugins being triggered after this goal are seeing another version than the version that is currently configured in the projects pom.xml. For releasing workflows this may nevertheless be intended.*

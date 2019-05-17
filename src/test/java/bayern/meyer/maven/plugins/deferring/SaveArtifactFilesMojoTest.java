@@ -26,7 +26,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import bayern.meyer.maven.plugins.deferring.model.AttachedArtifact;
-import bayern.meyer.maven.plugins.deferring.model.AttachedArtifactsHolder;
+import bayern.meyer.maven.plugins.deferring.model.DeferringInformationHolder;
 
 public class SaveArtifactFilesMojoTest {
 
@@ -96,14 +96,14 @@ public class SaveArtifactFilesMojoTest {
 		File deferringJsonFile = new File(testFolder.getRoot(), SaveArtifactFilesMojo.DEFERRING_JSON_FILENAME);
 		assertThat(deferringJsonFile).exists();
 
-		AttachedArtifactsHolder actualWrittenValue = objectMapper.readValue(deferringJsonFile,
-				AttachedArtifactsHolder.class);
+		DeferringInformationHolder actualWrittenValue = objectMapper.readValue(deferringJsonFile,
+				DeferringInformationHolder.class);
 
 		assertThat(actualWrittenValue.getGenerationTimestamp()).isBetween(before, LocalDateTime.now());
 
-		AttachedArtifactsHolder expectedValue = new AttachedArtifactsHolder();
+		DeferringInformationHolder expectedValue = new DeferringInformationHolder();
 		expectedValue.setGenerationTimestamp(actualWrittenValue.getGenerationTimestamp());
-		expectedValue.setFile(mainFile);
+		expectedValue.setArtifactFile(mainFile);
 		expectedValue.setAttachedArtifacts(Sets.newLinkedHashSet(
 				new AttachedArtifact(ARTIFACT_CLASSIFIER_1, ARTIFACTS_TYPE_1, attachedArtifact1File),
 				new AttachedArtifact(ARTIFACT_CLASSIFIER_2, ARTIFACTS_TYPE_2, attachedArtifact2File)));

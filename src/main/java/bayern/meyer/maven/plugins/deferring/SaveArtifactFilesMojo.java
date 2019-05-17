@@ -26,7 +26,7 @@ import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 
 import bayern.meyer.maven.plugins.deferring.model.AttachedArtifact;
-import bayern.meyer.maven.plugins.deferring.model.AttachedArtifactsHolder;
+import bayern.meyer.maven.plugins.deferring.model.DeferringInformationHolder;
 
 /**
  * Goal that stores the artifacts file and attachedArtifacts of the given
@@ -36,15 +36,17 @@ import bayern.meyer.maven.plugins.deferring.model.AttachedArtifactsHolder;
  *
  * @author Nils Meyer <a href="mailto:nils@meyer.bayern">nils@meyer.bayern</a>
  */
-@Mojo(name = "save-artifacts", defaultPhase = LifecyclePhase.PACKAGE, requiresProject = true)
-public class SaveArtifactFilesMojo extends AbstractArtifactFilesMojo {
+@Mojo(name = "save-artifacts", defaultPhase = LifecyclePhase.VERIFY, requiresProject = true)
+public class SaveArtifactFilesMojo extends AbstractDeferringMojo {
 
 	public void execute() throws MojoExecutionException {
 
-		AttachedArtifactsHolder attachedArtifactsHolder = new AttachedArtifactsHolder();
+		DeferringInformationHolder attachedArtifactsHolder = new DeferringInformationHolder();
 
-		attachedArtifactsHolder.setFile(mavenProject.getArtifact().getFile());
+		attachedArtifactsHolder.setArtifactFile(mavenProject.getArtifact().getFile());
+		attachedArtifactsHolder.setArtifactVersion(mavenProject.getArtifact().getVersion());
 		getLog().info("Saving artifact file " + mavenProject.getArtifact().getFile());
+		getLog().info("Saving artifact version " + mavenProject.getArtifact().getVersion());
 		for (Artifact artifact : mavenProject.getAttachedArtifacts()) {
 			attachedArtifactsHolder.addAttachedArtifact(
 					new AttachedArtifact(artifact.getClassifier(), artifact.getType(), artifact.getFile()));
@@ -52,7 +54,7 @@ public class SaveArtifactFilesMojo extends AbstractArtifactFilesMojo {
 		}
 		attachedArtifactsHolder.setGenerationTimestamp(LocalDateTime.now());
 
-		File attachedArtifactsHolderFile = getAttachedArtifactHolderFile();
+		File attachedArtifactsHolderFile = getDeferringInformationHolderFile();
 
 		if (attachedArtifactsHolderFile.exists()) {
 			attachedArtifactsHolderFile.delete();

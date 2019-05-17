@@ -5,20 +5,22 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
-public class AttachedArtifactsHolder {
+public class DeferringInformationHolder {
 
 	private Set<AttachedArtifact> attachedArtifacts;
 
 	private LocalDateTime generationTimestamp = LocalDateTime.now();
 
-	private File file;
+	private File artifactFile;
+	
+	private String artifactVersion;
 
-	public AttachedArtifactsHolder() {
+	public DeferringInformationHolder() {
 		super();
 		// Empty constructor for Jackson
 	}
 
-	public AttachedArtifactsHolder(AttachedArtifact...artifacts) {
+	public DeferringInformationHolder(AttachedArtifact...artifacts) {
 		this();
 		for (AttachedArtifact attachedArtifact : artifacts) {
 			addAttachedArtifact(attachedArtifact);
@@ -37,24 +39,32 @@ public class AttachedArtifactsHolder {
 		return attachedArtifacts;
 	}
 	
-	public File getFile() {
-		return file;
+	public File getArtifactFile() {
+		return artifactFile;
 	}
 
 	public LocalDateTime getGenerationTimestamp() {
 		return generationTimestamp;
 	}
 
+	public String getArtifactVersion() {
+		return artifactVersion;
+	}
+
 	public void setAttachedArtifacts(Set<AttachedArtifact> attachedArtifacts) {
 		this.attachedArtifacts = attachedArtifacts;
 	}
 
-	public void setFile(File file) {
-		this.file = file;
+	public void setArtifactFile(File file) {
+		this.artifactFile = file;
 	}
 
 	public void setGenerationTimestamp(LocalDateTime generationTimestamp) {
 		this.generationTimestamp = generationTimestamp;
+	}
+
+	public void setArtifactVersion(String version) {
+		this.artifactVersion = version;
 	}
 
 }

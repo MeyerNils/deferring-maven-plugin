@@ -10,5 +10,6 @@
 		}
 	],
 	"generationTimestamp": [2019, 1, 1, 0, 0, 0, 0],
-	"file": "mainFile.jar"
+	"artifactFile": "mainFile.jar",
+	"artifactVersion": "1.0.0-SNAPSHOT"
 }
