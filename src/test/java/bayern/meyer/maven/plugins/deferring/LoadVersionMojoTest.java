@@ -67,6 +67,7 @@ public class LoadVersionMojoTest {
 		// Verify expectations
 		verify(mockedMavenProject.getArtifact()).setVersion(ARTIFACT_VERSION);
 		verify(mockedMavenProject.getArtifact()).setVersionRange(eq(VersionRange.createFromVersion(ARTIFACT_VERSION)));
+		verify(mockedMavenProject.getModel()).setVersion(ARTIFACT_VERSION);
 	}
 
 	@Test

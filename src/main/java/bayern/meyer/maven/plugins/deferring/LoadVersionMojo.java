@@ -31,6 +31,7 @@ public class LoadVersionMojo extends AbstractDeferringMojo {
 
 	private void setVersion(DeferringInformationHolder deferringInformationHolder) {
 		mavenProject.getArtifact().setVersion(deferringInformationHolder.getArtifactVersion());
+		mavenProject.getModel().setVersion(deferringInformationHolder.getArtifactVersion());
 		mavenProject.getArtifact()
 				.setVersionRange(VersionRange.createFromVersion(deferringInformationHolder.getArtifactVersion()));
 		getLog().info("Read and set artifact version " + deferringInformationHolder.getArtifactVersion());
